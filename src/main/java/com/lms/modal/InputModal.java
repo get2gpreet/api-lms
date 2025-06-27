@@ -13,4 +13,5 @@ import java.util.List;
 @Builder
 public class InputModal {
     List<String> words;
+    String typeOfValidation;
 }

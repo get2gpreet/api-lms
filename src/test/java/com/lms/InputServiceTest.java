@@ -2,6 +2,7 @@ package com.lms;
 
 import com.lms.modal.InputModal;
 import com.lms.modal.UserRequest;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,11 +20,13 @@ class InputServiceTest {
     InputService  inputService;
 
     @Test
+    @SneakyThrows
     void inputValuesCheck() {
         System.out.println("inputValuesCheck");
 
         InputModal inputModal = InputModal.builder()
                 .words(Arrays.asList("hello", "world", "rotor", "1v1"))
+                .typeOfValidation("palindrome")
                 .build();
 
         Map<String, Boolean> stringBooleanMap = inputService.inputValuesCheck(inputModal);

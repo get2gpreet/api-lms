@@ -12,16 +12,20 @@ import java.util.Map;
 public class InputService {
 
 
-    public Map<String, Boolean> inputValuesCheck(InputModal input) {
+    public Map<String, Boolean> inputValuesCheck(InputModal input) throws Exception {
         Map<String, Boolean> map = new HashMap<>();
-        input.getWords().forEach(word -> map.put(word, isStringPlam(word)));
+        switch (input.getTypeOfValidation()) {
+            case  "palindrome" -> invokeStringPalindrome(input,map);
+            default -> throw new Exception("Invalid Input: provide typeOfValidation");
+        }
         return map;
     }
 
+    private void invokeStringPalindrome(InputModal input, Map<String, Boolean> map) {
+        input.getWords().forEach(word -> map.put(word, isStringPlam(word)));
+    }
+
     private Boolean isStringPlam(String word) {
-//        if (word.length() > 1) {
-//            throw new IllegalArgumentException("Value parameter is missing or empty!");
-//        }
         StringBuilder stringBuilder = new StringBuilder();
         return word.contentEquals(stringBuilder.append(word).reverse());
     }
