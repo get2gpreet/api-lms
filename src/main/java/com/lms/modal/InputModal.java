@@ -1,4 +1,4 @@
-package com.lms;
+package com.lms.modal;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,5 +1,8 @@
 package com.lms;
 
+import com.lms.modal.InputModal;
+import com.lms.modal.UserRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +12,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 @AllArgsConstructor
-public class Controller {
+public class LmsController {
 
     InputService inputService;
 
@@ -22,5 +25,11 @@ public class Controller {
     @GetMapping("/hello")
     public ResponseEntity<String> sayHello() {
         return ResponseEntity.ok("Hello, World!");
+    }
+
+    @PostMapping("/user/add")
+    public ResponseEntity<?> createUser(@Valid @RequestBody UserRequest userRequest) {
+        UserRequest response= inputService.createUser(userRequest);
+        return ResponseEntity.ok("User created successfully!");
     }
 }
