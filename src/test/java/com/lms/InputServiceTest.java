@@ -29,7 +29,7 @@ class InputServiceTest {
                 .typeOfValidation("palindrome")
                 .build();
 
-        Map<String, Boolean> stringBooleanMap = inputService.inputValuesCheck(inputModal);
+        Map<String, Object> stringBooleanMap = inputService.inputValuesCheck(inputModal);
         assertEquals(stringBooleanMap.size(),4);
     }
 

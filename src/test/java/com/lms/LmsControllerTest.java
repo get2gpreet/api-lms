@@ -47,7 +47,7 @@ class LmsControllerTest {
     @Test
     @SneakyThrows
     void testInputValues() {
-        Map<String, Boolean> stringBooleanMap = new HashMap<>();
+        Map<String, Object> stringBooleanMap = new HashMap<>();
         when(inputService.inputValuesCheck(any(InputModal.class))).thenReturn(stringBooleanMap);
 
         mockMvc.perform(post("/api/v1/test")

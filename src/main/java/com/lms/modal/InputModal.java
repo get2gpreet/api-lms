@@ -1,5 +1,6 @@
 package com.lms.modal;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,8 @@ import java.util.List;
 @ToString
 @Builder
 public class InputModal {
-    List<String> words;
-    String typeOfValidation;
+    private List<String> words;
+
+    private TypeOfValidation typeOfValidation;
 }
+

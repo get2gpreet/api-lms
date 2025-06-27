@@ -1,8 +1,8 @@
 package com.lms;
 
 import com.lms.modal.InputModal;
+import com.lms.modal.TypeOfValidation;
 import com.lms.modal.UserRequest;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,20 +12,19 @@ import java.util.Map;
 public class InputService {
 
 
-    public Map<String, Boolean> inputValuesCheck(InputModal input) throws Exception {
-        Map<String, Boolean> map = new HashMap<>();
+    public Map<String, Object> inputValuesCheck(InputModal input) throws Exception {
+        Map<String, Object> map = new HashMap<>();
         switch (input.getTypeOfValidation()) {
-            case  "palindrome" -> invokeStringPalindrome(input,map);
+            case TypeOfValidation.palindrome -> input.getWords().forEach(word -> map.put(word, isStringPalindrome(word)));
+            case TypeOfValidation.uppercase  -> input.getWords().forEach(word -> map.put(word, word.toUpperCase()));
+
             default -> throw new Exception("Invalid Input: provide typeOfValidation");
         }
         return map;
     }
 
-    private void invokeStringPalindrome(InputModal input, Map<String, Boolean> map) {
-        input.getWords().forEach(word -> map.put(word, isStringPlam(word)));
-    }
 
-    private Boolean isStringPlam(String word) {
+    private Boolean isStringPalindrome(String word) {
         StringBuilder stringBuilder = new StringBuilder();
         return word.contentEquals(stringBuilder.append(word).reverse());
     }

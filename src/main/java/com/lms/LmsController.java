@@ -18,7 +18,7 @@ public class LmsController {
 
     @PostMapping("/test")
     public ResponseEntity<?> testInputValues(@RequestBody InputModal input) throws Exception {
-        Map<String, Boolean> stringBooleanMap = inputService.inputValuesCheck(input);
+        Map<String, Object> stringBooleanMap = inputService.inputValuesCheck(input);
         return ResponseEntity.ok(stringBooleanMap);
     }
 
