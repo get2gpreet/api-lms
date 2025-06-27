@@ -32,4 +32,12 @@ public class LmsController {
         UserRequest response= inputService.createUser(userRequest);
         return ResponseEntity.ok("User created successfully!");
     }
+
+    @GetMapping("/global")
+    public String test(@RequestParam(required = false) String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Value must not be empty");
+        }
+        return "Received: " + value;
+    }
 }

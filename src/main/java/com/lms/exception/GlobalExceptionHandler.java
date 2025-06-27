@@ -13,8 +13,10 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(Exception ex) {
-        return new ResponseEntity<>("An error occurred in : IllegalArgumentException" + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(Exception ex) {
+        ErrorResponse error = new ErrorResponse("Validation failed", List.of(ex.getMessage()));
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -26,7 +28,6 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.toList());
 
         ErrorResponse errorResponse = new ErrorResponse("Validation failed", errorDetails);
-        //return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
