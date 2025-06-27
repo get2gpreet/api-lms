@@ -1,6 +1,7 @@
 package com.lms;
 
 import com.lms.modal.InputModal;
+import com.lms.modal.TypeOfValidation;
 import com.lms.modal.UserRequest;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class InputServiceTest {
 
         InputModal inputModal = InputModal.builder()
                 .words(Arrays.asList("hello", "world", "rotor", "1v1"))
-                .typeOfValidation("palindrome")
+                .typeOfValidation(TypeOfValidation.palindrome)
                 .build();
 
         Map<String, Object> stringBooleanMap = inputService.inputValuesCheck(inputModal);
